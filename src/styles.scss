@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+html,
+body {
+  background: #efe9e5;
+  font-family: "Inter", sans-serif;
+  height: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+}

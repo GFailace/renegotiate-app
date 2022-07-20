@@ -1,0 +1,46 @@
+<div class="container">
+    <div>
+        <h2>Renegociação de Dívidas</h2>
+    </div>
+    <div class="debtsContainer">
+        <h3>Pendências</h3>
+        <button class="negotiateButton" (click)="showGroupedModalDialog()">Agrupar Dívidas</button>
+        <div class="allDebtsContainer">
+            <div class="card" (click)="showModalDialog(debt.id)" *ngFor="let debt of openDebtsData"
+                title="Clique para mais info">
+                <div class="cardContent">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <h3>{{ debt.title }}</h3>
+                    <h4> Valor: {{ debt.value | currency: 'BRL' }}</h4>
+                    <!-- <h4 class="openDebt" *ngIf="debt.settled === false">PENDENTE</h4> -->
+                    <!-- <button class="negotiateButton">Negociar</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="displayModal" class="modal">
+    <button (click)="closeModalDialog()">Close</button>
+    <div class="modalContent">
+        <h4>{{ modalData[0].title }}</h4>
+        <h4>{{ modalData[0].value | currency: 'BRL' }}</h4>
+    </div>
+</div>
+
+<div *ngIf="displayGroupedModal" class="modal">
+    <button (click)="closeGroupedModalDialog()">Close</button>
+    <div class="groupedModalContent">
+        <div class="detailDebts">
+            <p>Detalhes</p>
+            <ul>
+                <li *ngFor="let debt of openDebtsData">{{ debt.title }} - <strong>{{ debt.value | currency:
+                        'BRL'}}</strong></li>
+            </ul>
+        </div>
+        <div class="totalDebts">
+            <p>Total de Débitos</p>
+            <h4>{{ totalDebts | currency: 'BRL' }}</h4>
+        </div>
+    </div>
+</div>

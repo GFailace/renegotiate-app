@@ -1,0 +1,28 @@
+{
+  "users": {
+    "id": 1,
+    "name": "Guilherme Failace",
+    "email": "guilherme.failace@gmail.com",
+    "password": "123456"
+  },
+  "debts": [
+    {
+      "id": 1,
+      "title": "Empréstimo PJ #1",
+      "value": 12500.0,
+      "settled": false
+    },
+    {
+      "id": 2,
+      "title": "Renegociação #1",
+      "value": 12500.0,
+      "settled": false
+    },
+    {
+      "id": 3,
+      "title": "Empréstimo PJ #2",
+      "value": 12500.0,
+      "settled": false
+    }
+  ]
+}
