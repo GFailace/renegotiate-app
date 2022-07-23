@@ -62,6 +62,7 @@ export class DebtsDetailComponent implements OnInit {
 
   closeInstallments() {
     this.displayInstallments = false;
+    this.acceptTerms = false;
   }
 
   showPopup() {
@@ -70,6 +71,7 @@ export class DebtsDetailComponent implements OnInit {
 
   closePopup() {
     this.displayPopup = false;
+    this.acceptTerms = false;
   }
 
   showPopupInCash() {
@@ -78,6 +80,7 @@ export class DebtsDetailComponent implements OnInit {
 
   closePopupInCash() {
     this.displayPopupInCash = false;
+    this.acceptTerms = false;
   }
 
   setNegotiation(id: number) {
