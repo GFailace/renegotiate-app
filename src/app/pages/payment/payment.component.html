@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div class="container">
+    <a routerLink="/">
+        <- Voltar ao menu principal</a>
+            <h2>Renegociar todas dívidas</h2>
+            <div>
+                <p>Aqui você pode agrupar suas dívidas e negociar o valor total delas. Aproveite algumas de nossas
+                    ofertas!</p>
+            </div>
+
+            <div class="actionCard">
+                <div class="actionCardContent">
+                    <h3>Total de dívidas</h3>
+                    <h2>{{ totalAmount | currency: 'BRL' }}</h2>
+                    <button class="buttonPrimary" (click)="showDetails()">Detalhes</button>
+                </div>
+                <div class="card">
+                    <div class="cardContent">
+                        <h4>Oferta #1</h4>
+                        <p>Pagamento à vista</p>
+                        <h4><span>Valor Original:</span>{{ totalAmount | currency: 'BRL' }}</h4>
+                        <h4><span>Desconto:</span>{{ 5000 | currency: 'BRL' }}</h4>
+                        <h4><span>Total a pagar:</span>{{ totalAmount - 5000 | currency: 'BRL' }}</h4>
+                        <button class="buttonPrimary" (click)="showOffer()">Efetivar Pagamento</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardContent">
+                        <h4>Oferta #2</h4>
+                        <p>Pagamento parcelado</p>
+                        <h4><span>Valor Original:</span>{{ totalAmount | currency: 'BRL' }}</h4>
+                        <h4><span>Desconto:</span>{{ 1000 | currency: 'BRL' }}</h4>
+                        <h4><span>Até 12x de:</span>{{ (totalAmount - 1000) / 12 | currency: 'BRL' }}</h4>
+                        <button class="buttonPrimary" (click)="showOffer()">Ver parcelas</button>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<div class="modal" *ngIf="displayDetails">
+    <div class="space-between">
+        <h3>Detalhes das pendências</h3>
+        <button class="buttonPrimary" (click)="closeDetails()">Fechar</button>
+    </div>
+    <app-total-details-card></app-total-details-card>
+</div>
+
+<div class="modal" *ngIf="displayOffer">
+    <div class="space-between">
+        <h2>Oferta #1</h2>
+        <button class="buttonPrimary" (click)="closeOffer()">Fechar</button>
+    </div>
+
+    <div class="modalContent">
+        <div class="offerContent">
+            <h4>Valor Original: {{ totalAmount | currency: 'BRL' }}</h4>
+            <h4>Desconto à vista: {{ 1000 | currency: 'BRL' }}</h4>
+            <h2>Total: {{ totalAmount - 1000 | currency: 'BRL' }}</h2>
+            <div>
+                <button (click)="showPayment()" class="buttonPrimary">Efetivar Negociação</button>
+                <app-toast></app-toast>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" *ngIf="displayPayment">
+    <div class="space-between">
+        <h3>Pagamento</h3>
+        <button class="buttonPrimary" (click)="closePayment()">Fechar</button>
+    </div>
+    <h4>Valor Original: {{ totalAmount | currency: 'BRL' }}</h4>
+    <h2>Total a pagar: {{ totalAmount - 1000 | currency: 'BRL' }}</h2>
+    <div>
+        <button (click)="showPayment()" class="buttonPrimary">Emitir boleto</button>
+        <button (click)="showUserPasswordInput()" class="buttonPrimary">Débito em conta</button>
+        <div *ngIf="displayUserPaswordInput">
+            <input [(ngModel)]="password" type="password" />
+            <button (click)="onClick()">Teste</button>
+        </div>
+    </div>
+</div>

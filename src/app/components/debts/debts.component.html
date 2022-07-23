@@ -1,35 +1,54 @@
 <div class="container">
-    <div>
-        <h2>Renegociação de Dívidas</h2>
-    </div>
+    <h3>Suas Pendências</h3>
     <div class="debtsContainer">
-        <h3>Pendências</h3>
-        <button class="negotiateButton" (click)="showGroupedModalDialog()">Agrupar Dívidas</button>
+        <div class="totalContainer">
+            <h3>Total de dívidas</h3>
+            <h2>{{ totalDebts | currency: 'BRL' }}</h2>
+            <a routerLink="/payment"><button class="buttonSecondary" aria-label="Ver Ofertas de
+                renegociação">Ver Ofertas de
+                    renegociação</button></a>
+        </div>
+
         <div class="allDebtsContainer">
             <div class="card" (click)="showModalDialog(debt.id)" *ngFor="let debt of openDebtsData"
                 title="Clique para mais info">
                 <div class="cardContent">
                     <i class="bi bi-exclamation-triangle"></i>
                     <h3>{{ debt.title }}</h3>
-                    <h4> Valor: {{ debt.value | currency: 'BRL' }}</h4>
+                    <h4> Valor: {{ debt.value + debt.fees | currency: 'BRL' }}</h4>
                     <!-- <h4 class="openDebt" *ngIf="debt.settled === false">PENDENTE</h4> -->
                     <!-- <button class="negotiateButton">Negociar</button> -->
                 </div>
             </div>
         </div>
     </div>
+    <!-- <button class="negotiateButton" (click)="showGroupedModalDialog()">Agrupar Dívidas</button> -->
 </div>
 
 <div *ngIf="displayModal" class="modal">
-    <button (click)="closeModalDialog()">Close</button>
+    <div class="space-between">
+        <h3>{{ modalData[0].title }}</h3>
+        <button class="buttonPrimary" (click)="closeModalDialog()">Fechar</button>
+    </div>
     <div class="modalContent">
-        <h4>{{ modalData[0].title }}</h4>
-        <h4>{{ modalData[0].value | currency: 'BRL' }}</h4>
+        <div class="modalDetailsText">
+            <p>Data da contratação: 21/12/2021</p>
+            <p>Vencimento: 21/01/2022</p>
+            <p>Valor contratado: R$: {{ modalData[0].value | currency: 'BRL' }}</p>
+            <p>Juros: {{ modalData[0].fees | currency: 'BRL' }}</p>
+        </div>
+        <div class="modalDetails">
+            <h4>Valor em aberto:</h4>
+            <h4>{{ modalData[0].value + modalData[0].fees | currency: 'BRL' }}</h4>
+            <a [routerLink]="['/payment', modalData[0].id]"><button class="buttonPrimary"
+                    aria-label="Negociar">Negociar</button></a>
+        </div>
+
     </div>
 </div>
 
 <div *ngIf="displayGroupedModal" class="modal">
-    <button (click)="closeGroupedModalDialog()">Close</button>
+    <button class="buttonPrimary" (click)="closeGroupedModalDialog()">Fechar</button>
     <div class="groupedModalContent">
         <div class="detailDebts">
             <p>Detalhes</p>

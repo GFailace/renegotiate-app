@@ -9,20 +9,53 @@
     {
       "id": 1,
       "title": "Empréstimo PJ #1",
-      "value": 12500.0,
-      "settled": false
+      "value": 15000,
+      "settled": false,
+      "createdAt": "22/10/2021",
+      "fees": 1200,
+      "dueDate": "22/10/2022"
     },
     {
       "id": 2,
       "title": "Renegociação #1",
-      "value": 12500.0,
-      "settled": false
+      "value": 12500,
+      "settled": false,
+      "createdAt": "22/10/2021",
+      "fees": 1200,
+      "dueDate": "22/10/2022"
     },
     {
       "id": 3,
       "title": "Empréstimo PJ #2",
-      "value": 12500.0,
-      "settled": false
+      "value": 12500,
+      "settled": false,
+      "createdAt": "22/10/2021",
+      "fees": 1200,
+      "dueDate": "22/10/2022"
+    }
+  ],
+  "renegotiations": [
+    {
+      "id": 1,
+      "type": 2,
+      "title": "Renegociação #1",
+      "value": 12500,
+      "settled": false,
+      "createdAt": "22/07/2022",
+      "parcelPay": 1,
+      "parcelValue": 958.33,
+      "parcels": 12
+    },
+    {
+      "id": 2,
+      "type": 1,
+      "title": "Renegociação #2",
+      "value": 1500,
+      "settled": true,
+      "createdAt": "22/07/2022",
+      "parcelPay": 0,
+      "parcelValue": 0,
+      "parcels": 0
     }
   ]
 }

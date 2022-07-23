@@ -11,6 +11,13 @@ import { MenubarModule } from 'primeng/menubar';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { HomeComponent } from './pages/home/home.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+import { ToastComponent } from './components/toast/toast.component';
+import { TotalDetailsCardComponent } from './components/total-details-card/total-details-card.component';
+import { FormsModule } from '@angular/forms';
+import { DebtsDetailComponent } from './components/debts-detail/debts-detail.component';
+import { RenegotiationsComponent } from './components/renegotiations/renegotiations.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +25,12 @@ import { DialogModule } from 'primeng/dialog';
     HeaderComponent,
     DebtsComponent,
     DebtCardComponent,
+    HomeComponent,
+    PaymentComponent,
+    ToastComponent,
+    TotalDetailsCardComponent,
+    DebtsDetailComponent,
+    RenegotiationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +39,8 @@ import { DialogModule } from 'primeng/dialog';
     MenubarModule,
     CardModule,
     ButtonModule,
-    DialogModule
+    DialogModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

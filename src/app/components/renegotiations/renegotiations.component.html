@@ -1,0 +1,18 @@
+<div class="container">
+    <h3>Renegociações Efetivadas</h3>
+    <div class="actionCard">
+        <div class="card" *ngFor="let  item of renegotiationsData"
+            [ngStyle]="{'height':'18rem', 'justify-content': 'flex-start'}">
+            <h4>{{item.title}}</h4>
+            <p>Tipo: <strong>{{item.type === 1 ? 'À vista' : 'Parcelamento'}}</strong></p>
+            <p>Valor: <strong>{{item.value | currency: 'BRL'}}</strong></p>
+            <p>Status: <strong>{{item.settled === true ? 'Quitado' : 'Em aberto'}}</strong></p>
+            <p>Data acordo: <strong>{{item.createdAt}}</strong></p>
+            <ng-container *ngIf="item.type === 2">
+                <p>Qtd. de parcelas: <strong>{{item.parcels}}</strong></p>
+                <p>Parcelas pagas: <strong>{{item.parcelPay}}</strong></p>
+                <p>Valor parcela: <strong>{{item.parcelValue | currency: 'BRL'}}</strong></p>
+            </ng-container>
+        </div>
+    </div>
+</div>

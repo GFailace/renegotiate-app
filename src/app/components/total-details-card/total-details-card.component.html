@@ -1,0 +1,12 @@
+<div class="detailsContainer">
+    <div *ngFor="let item of debtsData">
+        <div class="detailsItem">
+            <h3>{{ item.title }}</h3>
+            <p>Contratado: <strong>{{ item.value | currency: "BRL" }}</strong></p>
+            <p>Juros: <strong>{{ item.fees | currency: "BRL" }}</strong></p>
+            <p>Data contratação: <strong>{{ item.createdAt }}</strong></p>
+            <p>Vencimento: <strong>{{ item.dueDate }}</strong></p>
+            <p>Total: <strong>{{ item.value + item.fees | currency: "BRL" }}</strong></p>
+        </div>
+    </div>
+</div>

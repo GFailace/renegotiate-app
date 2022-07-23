@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DebtsDetailComponent } from './components/debts-detail/debts-detail.component';
 
-const routes: Routes = [];
+import { HomeComponent } from './pages/home/home.component';
+import { PaymentComponent } from './pages/payment/payment.component';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'payment/:id', component: DebtsDetailComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

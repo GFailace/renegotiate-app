@@ -15,25 +15,26 @@ export class DebtsComponent implements OnInit {
   public openDebtsData: Debts | any;
   public displayModal: boolean | any;
   public displayGroupedModal: boolean | any;
-  public modalData: any;
-  public totalDebts: number | any;
+  public modalData: Debts | any;
+  public totalDebts: number = 0;
 
   showModalDialog(id: number) {
     this.debtsService.getDebit(id).subscribe({
       next: (res) => (this.modalData = res),
       error: (e) => console.error(e),
     });
-    console.log(this.modalData);
     this.displayModal = true;
+  }
+
+  sumDebts() {
+    for (let i = 0; i <= this.openDebtsData.length; i++) {
+      this.totalDebts = this.totalDebts + this.openDebtsData[i].value;
+    }
   }
 
   showGroupedModalDialog() {
     this.displayGroupedModal = true;
-    let total: number = 0;
-    for (let i = 0; i <= this.openDebtsData.length; i++) {
-      total = total + this.openDebtsData[i].value;
-      this.totalDebts = total;
-    }
+    this.sumDebts();
   }
 
   closeGroupedModalDialog() {
@@ -50,9 +51,13 @@ export class DebtsComponent implements OnInit {
       (res) => (this.allDebtsData = res),
       (error) => error
     );
-    this.debtsService.getUserDebits().subscribe(
-      (res) => (this.openDebtsData = res),
-      (error) => error
-    );
+
+    this.debtsService.getUserDebits().subscribe({
+      next: (res) => {
+        this.openDebtsData = res;
+        this.sumDebts();
+      },
+      error: (error) => console.error(error),
+    });
   }
 }

@@ -1,0 +1,21 @@
+.detailsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.detailsItem {
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  width: fit-content;
+}
+
+.offerContent {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

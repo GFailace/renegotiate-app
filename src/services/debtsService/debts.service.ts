@@ -31,4 +31,15 @@ export class DebtsService {
       (error) => error
     );
   }
+
+  public setDebitNegotiation(id: number): Observable<any> {
+    return this.http
+      .patch(`${this.URL}/debts/${id}`, {
+        settled: true,
+      })
+      .pipe(
+        (res) => res,
+        (error) => error
+      );
+  }
 }

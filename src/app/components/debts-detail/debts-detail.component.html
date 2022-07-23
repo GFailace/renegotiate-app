@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="container">
+    <a routerLink="/">
+        <- Voltar ao menu principal</a>
+            <h2>Renegociar dívida</h2>
+            <div>
+                <p>Aqui você pode escolher a oferta que melhor se encaixa no seu bolso.</p>
+            </div>
+
+            <div class="actionCard">
+                <div class="actionCardContent">
+                    <h3>{{ debtData[0].title }}</h3>
+                    <p>Contratado: <strong>{{ debtData[0].value | currency: "BRL" }}</strong></p>
+                    <p>Juros: <strong>{{ debtData[0].fees | currency: "BRL" }}</strong></p>
+                    <p>Data contratação: <strong>{{ debtData[0].createdAt }}</strong></p>
+                    <p>Vencimento: <strong>{{ debtData[0].dueDate }}</strong></p>
+                    <p>Total: <strong>{{ debtData[0].value + debtData[0].fees | currency: "BRL" }}</strong></p>
+                </div>
+                <div class="card">
+                    <div class="cardContent">
+                        <h4>Oferta #1</h4>
+                        <p>Pagamento à vista</p>
+                        <h4><span>Valor:</span>{{ debtData[0].value + debtData[0].fees | currency: 'BRL' }}</h4>
+                        <h4><span>Desconto:</span>{{ discountInCash | currency: 'BRL' }}</h4>
+                        <h4><span>Total a pagar:</span>{{ (debtData[0].value + debtData[0].fees) - discountInCash |
+                            currency:
+                            'BRL' }}</h4>
+                        <button class="buttonPrimary" (click)="showPopupInCash()">Efetivar Pagamento</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="cardContent">
+                        <h4>Oferta #2</h4>
+                        <p>Pagamento parcelado</p>
+                        <h4><span>Valor:</span>{{ debtData[0].value + debtData[0].fees | currency: 'BRL' }}</h4>
+                        <h4><span>Desconto:</span>{{ discountParceled | currency: 'BRL' }}</h4>
+                        <h4><span>Até 12x de:</span>{{ ((debtData[0].value + debtData[0].fees) - discountParceled) / 12
+                            | currency:
+                            'BRL' }}</h4>
+                        <button class="buttonPrimary" (click)="showInstallments()">Ver parcelas</button>
+                    </div>
+                </div>
+                <div *ngIf="displayInstallments">
+                    <h3>Parcelamento</h3>
+                    <p>Total com desconto: <strong>{{ ((debtData[0].value + debtData[0].fees) - discountParceled) |
+                            currency:
+                            'BRL' }}</strong></p>
+                    <span>Qtd. de parcelas:</span>
+                    <select class="select" [(ngModel)]="selectedOption" (ngModelChange)="selectOption($event)">
+                        <option *ngFor=" let o of options" [ngValue]="o.value">{{ o.name }}</option>
+                    </select>
+                    <p>Valor da parcela: <strong>{{ ((debtData[0].value + debtData[0].fees) - discountParceled) /
+                            selectedOption
+                            |
+                            currency:
+                            'BRL' }}</strong></p>
+                    <button class="buttonPrimary" (click)="closeInstallments()">Cancelar</button>
+                    <button class="buttonAction" (click)="showPopup()">Efetivar negociação</button>
+                </div>
+            </div>
+</div>
+
+<div class="modal" *ngIf="displayPopup">
+    <div class="space-between">
+        <h3>Renegociação</h3>
+        <button class="buttonPrimary" (click)="closePopup()">Fechar</button>
+    </div>
+    <div>
+        <h4>Valor original: {{ debtData[0].value + debtData[0].fees | currency: 'BRL'}}</h4>
+        <h4>Valor com desconto: {{ ((debtData[0].value + debtData[0].fees) - discountParceled) | currency: 'BRL' }}</h4>
+        <h4>Qtd. de parcelas: {{ selectedOption }}</h4>
+        <h4>Valor da parcela: {{ ((debtData[0].value + debtData[0].fees) - discountParceled) / selectedOption |
+            currency: 'BRL' }}
+        </h4>
+        <div [ngStyle]="{ 'display': 'flex', 'align-items': 'center', 'padding': '0.5rem' }">
+            <input type="checkbox" [(ngModel)]="acceptTerms" /><span [ngStyle]="{ 'margin': '0 5px' }">Aceito os termos
+                do
+                acordo.</span>
+        </div>
+        <button [attr.disabled]="acceptTerms ? null : true" class="buttonAction"
+            (click)="setNegotiationParceled(debtData[0].id)">Efetivar negociação</button>
+    </div>
+    <app-toast></app-toast>
+</div>
+
+<div class="modal" *ngIf="displayPopupInCash">
+    <div class="space-between">
+        <h3>Renegociação</h3>
+        <button class="buttonPrimary" (click)="closePopupInCash()">Fechar</button>
+    </div>
+    <div>
+        <h4>Valor original: {{ debtData[0].value + debtData[0].fees | currency: 'BRL'}}</h4>
+        <h4>Valor com desconto: {{ ((debtData[0].value + debtData[0].fees) - discountInCash) | currency: 'BRL' }}</h4>
+        <div [ngStyle]="{ 'display': 'flex', 'align-items': 'center', 'padding': '0.5rem' }">
+            <input type="checkbox" [(ngModel)]="acceptTerms" /><span [ngStyle]="{ 'margin': '0 5px' }">Aceito os termos
+                do
+                acordo.</span>
+        </div>
+        <button [attr.disabled]="acceptTerms ? null : true" class="buttonAction"
+            (click)="setNegotiation(debtData[0].id)">Efetivar negociação</button>
+    </div>
+    <app-toast></app-toast>
+</div>
