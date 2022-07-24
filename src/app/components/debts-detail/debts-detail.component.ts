@@ -90,7 +90,7 @@ export class DebtsDetailComponent implements OnInit {
           .createUserRenegotiation({
             type: 1,
             title: this.debtData[0].title,
-            value: this.debtData[0].value,
+            value: ((this.debtData[0].value + this.debtData[0].fees) - this.discountInCash),
             settled: false,
             createdAt: '23/07/2022',
             dueDate: '31/12/2022',
@@ -119,14 +119,14 @@ export class DebtsDetailComponent implements OnInit {
           .createUserRenegotiation({
             type: 2,
             title: this.debtData[0].title,
-            value: this.debtData[0].value,
+            value: ((this.debtData[0].value + this.debtData[0].fees) - this.discountParceled),
             settled: false,
             createdAt: '23/07/2022',
             dueDate: '31/12/2022',
             parcels: this.selectedOption,
             parcelPay: 0,
             parcelValue:
-              (this.debtData[0].value + this.debtData[0].fees - 1000) /
+              (this.debtData[0].value + this.debtData[0].fees - this.discountParceled) /
               this.selectedOption,
           })
           .subscribe({
