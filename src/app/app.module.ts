@@ -18,6 +18,7 @@ import { TotalDetailsCardComponent } from './components/total-details-card/total
 import { FormsModule } from '@angular/forms';
 import { DebtsDetailComponent } from './components/debts-detail/debts-detail.component';
 import { RenegotiationsComponent } from './components/renegotiations/renegotiations.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { RenegotiationsComponent } from './components/renegotiations/renegotiati
     TotalDetailsCardComponent,
     DebtsDetailComponent,
     RenegotiationsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

@@ -40,8 +40,7 @@
                         <button class="buttonPrimary" (click)="showInstallments()">Ver parcelas</button>
                     </div>
                 </div>
-                <div [ngStyle]="{ 'padding': '1rem'}"
-                    *ngIf="displayInstallments">
+                <div [ngStyle]="{ 'padding': '1rem'}" *ngIf="displayInstallments">
                     <h3>Parcelamento</h3>
                     <p>Total com desconto: <strong>{{ ((debtData[0].value + debtData[0].fees) - discountParceled) |
                             currency:

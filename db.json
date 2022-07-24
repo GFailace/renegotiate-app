@@ -19,7 +19,7 @@
       "id": 2,
       "title": "Renegociação #1",
       "value": 12500,
-      "settled": false,
+      "settled": true,
       "createdAt": "22/10/2021",
       "fees": 1200,
       "dueDate": "22/10/2022"
@@ -56,6 +56,18 @@
       "parcelPay": 0,
       "parcelValue": 0,
       "parcels": 0
+    },
+    {
+      "type": 2,
+      "title": "Renegociação #1",
+      "value": 12700,
+      "settled": false,
+      "createdAt": "23/07/2022",
+      "dueDate": "31/12/2022",
+      "parcels": 10,
+      "parcelPay": 0,
+      "parcelValue": 1270,
+      "id": 3
     }
   ]
 }

@@ -42,4 +42,17 @@ export class DebtsService {
         (error) => error
       );
   }
+
+  /* public setAllDebitNegotiation(debits: any): Observable<any> {
+   for(let i = 0; i <= debits.length; i++) {
+      return this.http
+        .patch(`${this.URL}/debts/${debits.id}`, {
+          settled: true,
+        })
+        .pipe(
+          (res) => res,
+          (error) => error
+        );
+    }
+  } */
 }

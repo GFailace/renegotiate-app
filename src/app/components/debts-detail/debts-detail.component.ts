@@ -83,14 +83,27 @@ export class DebtsDetailComponent implements OnInit {
     this.acceptTerms = false;
   }
 
+  downloadTicket() {
+    const link = document.createElement('a');
+    link.setAttribute('target', '_self');
+    link.setAttribute('href', '../../../assets/Boleto.pdf');
+    link.setAttribute('download', `Boleto Renegociação.pdf`);
+    link.click();
+    link.remove();
+  }
+
   setNegotiation(id: number) {
+    this.downloadTicket();
     this.debtsService.setDebitNegotiation(id).subscribe({
       next: (res) => {
         this.renegotiationsService
           .createUserRenegotiation({
             type: 1,
             title: this.debtData[0].title,
-            value: ((this.debtData[0].value + this.debtData[0].fees) - this.discountInCash),
+            value:
+              this.debtData[0].value +
+              this.debtData[0].fees -
+              this.discountInCash,
             settled: false,
             createdAt: '23/07/2022',
             dueDate: '31/12/2022',
@@ -113,20 +126,26 @@ export class DebtsDetailComponent implements OnInit {
   }
 
   setNegotiationParceled(id: number) {
+    this.downloadTicket();
     this.debtsService.setDebitNegotiation(id).subscribe({
       next: (res) => {
         this.renegotiationsService
           .createUserRenegotiation({
             type: 2,
             title: this.debtData[0].title,
-            value: ((this.debtData[0].value + this.debtData[0].fees) - this.discountParceled),
+            value:
+              this.debtData[0].value +
+              this.debtData[0].fees -
+              this.discountParceled,
             settled: false,
             createdAt: '23/07/2022',
             dueDate: '31/12/2022',
             parcels: this.selectedOption,
             parcelPay: 0,
             parcelValue:
-              (this.debtData[0].value + this.debtData[0].fees - this.discountParceled) /
+              (this.debtData[0].value +
+                this.debtData[0].fees -
+                this.discountParceled) /
               this.selectedOption,
           })
           .subscribe({

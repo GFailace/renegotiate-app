@@ -1,6 +1,6 @@
 <div class="container">
     <h3>Suas Pendências</h3>
-    <div class="debtsContainer">
+    <div class="debtsContainer" *ngIf="totalDebts > 0">
         <div class="totalContainer">
             <h3>Total de dívidas</h3>
             <h2>{{ totalDebts | currency: 'BRL' }}</h2>
@@ -16,13 +16,13 @@
                     <i class="bi bi-exclamation-triangle"></i>
                     <h3>{{ debt.title }}</h3>
                     <h4> Valor: {{ debt.value + debt.fees | currency: 'BRL' }}</h4>
-                    <!-- <h4 class="openDebt" *ngIf="debt.settled === false">PENDENTE</h4> -->
-                    <!-- <button class="negotiateButton">Negociar</button> -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- <button class="negotiateButton" (click)="showGroupedModalDialog()">Agrupar Dívidas</button> -->
+    <div class="debtsContainer" *ngIf="totalDebts <= 0">
+        <p>Nenhuma pendência encontrada.</p>
+    </div>
 </div>
 
 <div *ngIf="displayModal" class="modal">
@@ -44,22 +44,5 @@
                     aria-label="Negociar">Negociar</button></a>
         </div>
 
-    </div>
-</div>
-
-<div *ngIf="displayGroupedModal" class="modal">
-    <button class="buttonPrimary" (click)="closeGroupedModalDialog()">Fechar</button>
-    <div class="groupedModalContent">
-        <div class="detailDebts">
-            <p>Detalhes</p>
-            <ul>
-                <li *ngFor="let debt of openDebtsData">{{ debt.title }} - <strong>{{ debt.value | currency:
-                        'BRL'}}</strong></li>
-            </ul>
-        </div>
-        <div class="totalDebts">
-            <p>Total de Débitos</p>
-            <h4>{{ totalDebts | currency: 'BRL' }}</h4>
-        </div>
     </div>
 </div>

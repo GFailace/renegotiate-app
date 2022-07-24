@@ -14,7 +14,6 @@ export class DebtsComponent implements OnInit {
   public allDebtsData: Debts | any;
   public openDebtsData: Debts | any;
   public displayModal: boolean | any;
-  public displayGroupedModal: boolean | any;
   public modalData: Debts | any;
   public totalDebts: number = 0;
 
@@ -28,17 +27,11 @@ export class DebtsComponent implements OnInit {
 
   sumDebts() {
     for (let i = 0; i <= this.openDebtsData.length; i++) {
-      this.totalDebts = this.totalDebts + this.openDebtsData[i].value;
+      this.totalDebts =
+        this.totalDebts +
+        this.openDebtsData[i].value +
+        this.openDebtsData[i].fees;
     }
-  }
-
-  showGroupedModalDialog() {
-    this.displayGroupedModal = true;
-    this.sumDebts();
-  }
-
-  closeGroupedModalDialog() {
-    this.displayGroupedModal = false;
   }
 
   closeModalDialog() {
