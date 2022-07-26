@@ -10,7 +10,7 @@ import { RenegotiationsService } from 'src/services/renegotiationsService/renego
   styleUrls: ['./debts-detail.component.scss'],
 })
 export class DebtsDetailComponent implements OnInit {
-  public id: any = '';
+  public id: any;
   public debtData: Debts | any;
   public displayInstallments: boolean = false;
   public displayPopup: boolean = false;
@@ -41,11 +41,9 @@ export class DebtsDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
     this.debtsService.getDebit(Number(this.id)).subscribe({
       next: (res) => {
         this.debtData = res;
-        console.log(this.debtData);
       },
       error: (error) => console.error(error),
     });

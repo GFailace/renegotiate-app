@@ -80,11 +80,13 @@ span {
 }
 
 .buttonAction {
+  align-items: center;
   background: rgba(236, 112, 0, 1);
   border: 1px solid rgba(236, 112, 0, 1);
   border-radius: 4px;
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
+  display: flex;
   font-weight: 700;
   margin: 0.5rem;
   padding: 0.5rem;
@@ -251,6 +253,10 @@ input[type="checkbox"]:checked::before {
 }
 
 @media (max-width: 768px) {
+  .actionCard {
+    justify-content: center;
+  }
+
   .modal {
     width: 85%;
     overflow: auto;

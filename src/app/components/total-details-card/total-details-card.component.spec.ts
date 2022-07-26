@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { TotalDetailsCardComponent } from './total-details-card.component';
+import { HeaderComponent } from '../header/header.component';
 
 describe('TotalDetailsCardComponent', () => {
   let component: TotalDetailsCardComponent;
@@ -8,16 +11,16 @@ describe('TotalDetailsCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TotalDetailsCardComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule, RouterTestingModule],
+      declarations: [TotalDetailsCardComponent, HeaderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TotalDetailsCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Renderizar componente', () => {
     expect(component).toBeTruthy();
   });
 });

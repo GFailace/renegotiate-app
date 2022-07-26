@@ -1,10 +1,10 @@
 <div class="container">
-    <h3>Suas Pendências</h3>
+    <h3 id="title">Suas Pendências</h3>
     <div class="debtsContainer" *ngIf="totalDebts > 0">
         <div class="totalContainer">
-            <h3>Total de dívidas</h3>
+            <h3 >Total de dívidas</h3>
             <h2>{{ totalDebts | currency: 'BRL' }}</h2>
-            <a routerLink="/payment"><button class="buttonSecondary" aria-label="Ver Ofertas de
+            <a routerLink="/pagamento"><button class="buttonSecondary" aria-label="Ver Ofertas de
                 renegociação">Ver Ofertas de
                     renegociação</button></a>
         </div>
@@ -40,7 +40,7 @@
         <div class="modalDetails">
             <h4>Valor em aberto:</h4>
             <h4>{{ modalData[0].value + modalData[0].fees | currency: 'BRL' }}</h4>
-            <a [routerLink]="['/payment', modalData[0].id]"><button class="buttonPrimary"
+            <a [routerLink]="['/pagamento', modalData[0].id]"><button class="buttonPrimary"
                     aria-label="Negociar">Negociar</button></a>
         </div>
 

@@ -17,7 +17,7 @@ describe('ToastComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Renderizar componente', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -2,21 +2,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DebtsComponent } from './debts.component';
+import { PaymentComponent } from './payment.component';
 import { HeaderComponent } from '../header/header.component';
-import { By } from '@angular/platform-browser';
 
-describe('DebtsComponent', () => {
-  let component: DebtsComponent;
-  let fixture: ComponentFixture<DebtsComponent>;
+describe('PaymentComponent', () => {
+  let component: PaymentComponent;
+  let fixture: ComponentFixture<PaymentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
-      declarations: [DebtsComponent, HeaderComponent],
+      declarations: [PaymentComponent, HeaderComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DebtsComponent);
+    fixture = TestBed.createComponent(PaymentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -27,6 +26,12 @@ describe('DebtsComponent', () => {
 
   it('Verificar título', () => {
     const title = fixture.debugElement.nativeElement.querySelector('#title');
-    expect(title.innerHTML).toEqual('Suas Pendências');
+    expect(title.innerHTML).toEqual('Renegociar todas as dívidas');
+  });
+
+  it('Renderizar container', () => {
+    const title =
+      fixture.debugElement.nativeElement.querySelector('.actionCard');
+    expect(title).toBeTruthy();
   });
 });

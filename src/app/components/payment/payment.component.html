@@ -2,9 +2,9 @@
 <div class="container">
     <a routerLink="/">
         <- Voltar ao menu principal</a>
-            <h2>Renegociar todas dívidas</h2>
+            <h2 id="title">Renegociar todas as dívidas</h2>
             <div>
-                <p>Aqui você pode agrupar suas dívidas e negociar o valor total delas. Aproveite algumas de nossas
+                <p>Aqui você pode agrupar suas dívidas e negociar o valor total delas. Aproveite alguma de nossas
                     ofertas!</p>
             </div>
 
@@ -18,24 +18,20 @@
                     <div class="cardContent">
                         <h4>Oferta #1</h4>
                         <p>Pagamento à vista</p>
-                        <h4><span>Valor Original:</span>{{ totalAmount | currency: 'BRL' }}</h4>
-                        <h4><span>Desconto:</span>{{ discountInCash | currency: 'BRL' }}</h4>
-                        <h4><span>Total a pagar:</span>{{ totalAmount - discountInCash | currency: 'BRL' }}</h4>
-                        <button class="buttonPrimary" (click)="showPayment()">Efetivar Pagamento</button>
+                        <p>Desconto maior e você tem até 30 dias para fazer o pagamento via boleto bancário</p>
+                        <button class="buttonPrimary" (click)="showPayment()">Simular Pagamento</button>
                     </div>
                 </div>
                 <div class="card">
                     <div class="cardContent">
                         <h4>Oferta #2</h4>
                         <p>Pagamento parcelado</p>
-                        <h4><span>Valor Original:</span>{{ totalAmount | currency: 'BRL' }}</h4>
-                        <h4><span>Desconto:</span>{{ discountParceled | currency: 'BRL' }}</h4>
-                        <h4><span>Até 12x de:</span>{{ (totalAmount - discountParceled) / 12 | currency: 'BRL' }}</h4>
-                        <button class="buttonPrimary" (click)="showInstallments()">Ver parcelas</button>
+                        <p>Desconto exclusivo e você pode parcelar o débito em até 12x fixas</p>
+                        <button class="buttonPrimary" (click)="showInstallments()">Simular parcelas</button>
                     </div>
                 </div>
                 <div [ngStyle]="{ 'padding': '1rem'}" *ngIf="displayInstallments">
-                    <h3>Parcelamento</h3>
+                    <h3>Simular Parcelamento</h3>
                     <p>Total com desconto: <strong>{{ totalAmount - discountParceled |
                             currency:
                             'BRL' }}</strong></p>
@@ -48,8 +44,11 @@
                             |
                             currency:
                             'BRL' }}</strong></p>
-                    <button class="buttonPrimary" (click)="closeInstallments()">Cancelar</button>
-                    <button class="buttonAction" (click)="showOffer()">Efetivar negociação</button>
+                    <div [ngStyle]="{'display': 'flex'}">
+                        <button class="buttonAction" (click)="showOffer()">Efetivar renegociação</button>
+                        <button class="buttonPrimary" (click)="closeInstallments()">Cancelar</button>
+                    </div>
+
                 </div>
             </div>
 </div>
@@ -64,7 +63,7 @@
 
 <div class="modal" *ngIf="displayOffer">
     <div class="space-between">
-        <h3>Renegociação</h3>
+        <h3>Simulação de Renegociação</h3>
         <button class="buttonPrimary" (click)="closeOffer()">Fechar</button>
     </div>
     <div>
@@ -75,51 +74,32 @@
             currency: 'BRL' }}
         </h4>
         <div [ngStyle]="{ 'display': 'flex', 'align-items': 'center', 'padding': '0.5rem' }">
-            <input type="checkbox" [(ngModel)]="acceptTerms" /><span [ngStyle]="{ 'margin': '0 5px' }">Aceito os termos
-                do
-                acordo.</span>
+            <input type="checkbox" [(ngModel)]="acceptTerms" /><span [ngStyle]="{ 'margin': '0 5px' }">Aceito o acordo
+                de renegociação.</span>
         </div>
 
         <button [attr.disabled]="acceptTerms ? null : true" class="buttonAction"
             (click)="setNegotiationParceled()">Efetivar
-            negociação</button>
+            renegociação</button>
     </div>
     <app-toast></app-toast>
 </div>
 
 <div class="modal" *ngIf="displayPayment">
     <div class="space-between">
-        <h3>Renegociação</h3>
+        <h3>Simulação de Renegociação</h3>
         <button class="buttonPrimary" (click)="closePayment()">Fechar</button>
     </div>
     <div>
         <h4>Valor original: {{ totalAmount | currency: 'BRL'}}</h4>
         <h4>Valor com desconto: {{ totalAmount - discountInCash| currency: 'BRL' }}</h4>
         <div [ngStyle]="{ 'display': 'flex', 'align-items': 'center', 'padding': '0.5rem' }">
-            <input type="checkbox" [(ngModel)]="acceptTerms" /><span [ngStyle]="{ 'margin': '0 5px' }">Aceito os termos
-                do
-                acordo.</span>
+            <input type="checkbox" [(ngModel)]="acceptTerms" /><span [ngStyle]="{ 'margin': '0 5px' }">Aceito o acordo
+                de renegociação.</span>
         </div>
 
         <button [attr.disabled]="acceptTerms ? null : true" class="buttonAction" (click)="setNegotiationCash()">Efetivar
-            negociação</button>
+            renegociação</button>
     </div>
     <app-toast></app-toast>
 </div>
-
-<!-- <div class="modal" *ngIf="displayPayment">
-    <div class="space-between">
-        <h3>Pagamento</h3>
-        <button class="buttonPrimary" (click)="closePayment()">Fechar</button>
-    </div>
-    <h4>Valor Original: {{ totalAmount | currency: 'BRL' }}</h4>
-    <h2>Total a pagar: {{ totalAmount - discountParceled | currency: 'BRL' }}</h2>
-    <div>
-        <button (click)="showPayment()" class="buttonPrimary">Emitir boleto</button>
-        <button (click)="showUserPasswordInput()" class="buttonPrimary">Débito em conta</button>
-        <div *ngIf="displayUserPaswordInput">
-            <input [(ngModel)]="password" type="password" />
-            <button (click)="onClick()">Teste</button>
-        </div>
-    </div>
-</div> -->

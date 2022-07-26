@@ -12,14 +12,14 @@ export class HeaderComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   public userData: User | any;
-  public items: MenuItem[] | any;
 
   ngOnInit(): void {
     this.userService.getUser().subscribe(
-      (res) => (this.userData = res),
+      (res) => {
+        console.log(res);
+        this.userData = res.name;
+      },
       (error) => error
     );
-
-    this.items = [];
   }
 }

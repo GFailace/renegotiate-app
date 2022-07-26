@@ -1,28 +1,58 @@
 <app-header></app-header>
 <div class="container">
-    <h2>Portal de Renegociação</h2>
-    <p>Projeto desenvolvido em Angular para simular a renegociação de dívidas dos clientes.</p>
+    <a routerLink="/">
+        <- Voltar ao menu principal</a>
+            <h2>Portal de Renegociação</h2>
+            <div>
+                <h4>Perfil do Github - <a href="https://github.com/GFailace"
+                        target="_blank">https://github.com/GFailace</a>
+                </h4>
+                <h4>Repositório - <a href="https://github.com/GFailace/renegotiate-app"
+                        target="_blank">https://github.com/GFailace/renegotiate-app</a></h4>
+                <a href="../../../assets/relatorio.pdf" download="Relatório Técnico">
+                    <button class="buttonAction" [ngStyle]="{'align-items': 'center'}"><i class="bi bi-cloud-arrow-down"
+                            [ngStyle]="{'font-size': '24px', 'margin-right':'0.5rem'}"></i>
+                        Baixar
+                        Relatório</button>
+                </a>
+            </div>
 
-    <h4>Desenvolvimento</h4>
-    <p>Rodar o comando <strong>npm i</strong> para instalar as dependências do projeto, após rodar o comando <strong>ng
-            serve</strong> para iniciar o
-        servidor de desenvolvimento no endereço <a href="http://localhost:4200"
-            target="_blank"><strong>http://localhost:4200</strong></a>.
-    </p>
+            <p>O objetivo do portal é possibilitar a visualização de renegociações efetivadas e renegociação de dívidas
+                e
+                através
+                de ofertas de desconto para acordo. O
+                usuário pode escolher entre duas ofertas: pagamento à vista ou de forma parcelada, para quitar o total
+                dos
+                débitos ou uma dívida individualmente.</p>
 
-    <h4>JSON-Server</h4>
-    <p>Para utilizar os dados de mock da API Rest deve-se instalar o json-server <strong>npm i -g json-server</strong> e
-        após a instalação
-        rodar o comando <strong>json-server --watch db.json</strong> que iniciará a API no endereço <a
-            href="http://localhost:3000" target="_blank"><strong>http://localhost:3000</strong></a></p>
+            <h4>Tecnologias utilizadas</h4>
+            <p>O portal consiste em um sistema desenvolvido em Angular v14(framework Javascript) utilizando CSS(Sass)
+                para os
+                estilos, Bootstrap Icons para ícones
+                e para simular o backend de uma API Rest utilizei o JSON Server.</p>
+            <p>Foi utilizado Jasmine e Karma para fazer testes unitários de renderização dos componentes</p>
 
-    <h4>Testes Unitários</h4>
-    <p>Rodar o comando <strong>ng test</strong> para executar testes via <a href="https://karma-runner.github.io"
-            target="_blank">Karma</a>.
-    </p>
 
-    <div class="diagramContainer">
-        <h4>Diagrama de Arquitetura</h4>
-        <img src="../../../assets/Arquitetura.jpg" alt="Diagrama de Arquitetura" />
-    </div>
+
+            <div class="diagramContainer">
+                <h4>Diagrama de Arquitetura</h4>
+                <p>A comunicação entre os componentes e a API ocorre através de métodos HTTP. Para o backend foram
+                    usados dados
+                    de mock através do JSON Server, para simular as requisições.</p>
+                <p>O diagrama abaixo demonstra o funcionamento da comunicação.</p>
+                <img src="../../../assets/Arquitetura.jpg" alt="Diagrama de Arquitetura" />
+            </div>
+
+            <div>
+                <h4>Referências</h4>
+                <a href="https://angular.io/docs" target="_blank">
+                    <p>- Angular Docs</p>
+                </a>
+                <a href="https://icons.getbootstrap.com" target="_blank">
+                    <p>- Bootstrap Icons</p>
+                </a>
+                <a href="https://github.com/typicode/json-server" target="_blank">
+                    <p>- JSON Server</p>
+                </a>
+            </div>
 </div>
