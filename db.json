@@ -1,6 +1,7 @@
 {
   "users": {
     "id": 1,
+    "account": "123456",
     "name": "Guilherme Failace",
     "email": "guilherme.failace@gmail.com",
     "password": "123456"

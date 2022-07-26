@@ -10,10 +10,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { TotalDetailsCardComponent } from './components/total-details-card/total-details-card.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DebtsDetailComponent } from './components/debts-detail/debts-detail.component';
 import { RenegotiationsComponent } from './components/renegotiations/renegotiations.component';
 import { AboutComponent } from './pages/about/about.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,14 @@ import { AboutComponent } from './pages/about/about.component';
     DebtsDetailComponent,
     RenegotiationsComponent,
     AboutComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

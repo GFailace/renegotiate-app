@@ -54,6 +54,34 @@
   visibility: visible;
 }
 
+#toast-error-login {
+  align-items: center;
+  background-color: #d92525;
+  border-radius: 4px;
+  color: #fff;
+  display: flex;
+  left: 50%;
+  justify-content: center;
+  min-width: 250px;
+  padding: 1rem;
+  position: fixed;
+  text-align: center;
+  top: 30px;
+  transform: translate(-50%, 0);
+  visibility: hidden;
+  z-index: 1;
+
+  i {
+    font-size: 20px;
+    margin-right: 0.5rem;
+  }
+}
+#toast-error-login.show {
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  visibility: visible;
+}
+
 @-webkit-keyframes fadein {
   from {
     top: 0;
@@ -97,4 +125,3 @@
     opacity: 0;
   }
 }
-

@@ -1,0 +1,16 @@
+.loginContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loginInput {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  height: 30px;
+  margin: 0.5rem;
+  outline: 0;
+}
