@@ -23,4 +23,9 @@ describe('RenegotiationsComponent', () => {
   it('Renderizar componente', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Renderizar título', () => {
+    const title = fixture.debugElement.nativeElement.querySelector('#title');
+    expect(title.innerHTML).toEqual('Renegociações Efetivadas');
+  });
 });

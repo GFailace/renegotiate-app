@@ -4,9 +4,9 @@
         <div>
             <form [formGroup]="formGroup"
                 [ngStyle]="{'display': 'flex', 'flex-direction': 'column', 'margin':'1rem 0.5rem'}">
-                <input [(ngModel)]="account" class="loginInput" formControlName="account" type="text" alt="conta"
+                <input class="loginInput" formControlName="account" type="text" alt="conta"
                     placeholder="Conta" required="Conta é obrigatório." />
-                <input [(ngModel)]="password" class=" loginInput" formControlName="password" type="password" alt="Senha"
+                <input class=" loginInput" formControlName="password" type="password" alt="Senha"
                     placeholder="Senha" required="Senha é obrigatório." />
                 <button (click)="loginUser()" class="buttonAction" [disabled]="!formGroup.valid"
                     [ngStyle]="{'justify-content': 'center', 'margin': '1rem auto' ,'width': '60%'}">Login</button>

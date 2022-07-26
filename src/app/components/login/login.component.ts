@@ -22,21 +22,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public account: string = '';
-  public password: string = '';
   public userData: User | any;
   public formGroup: FormGroup | any;
 
   loginUser() {
     if (
-      this.account === this.userData.account &&
-      this.password === this.userData.password
+      this.formGroup.value.account === this.userData.account &&
+      this.formGroup.value.password === this.userData.password
     ) {
       this.router.navigate(['']);
     } else {
       this.showToastError();
-      this.account = '';
-      this.password = '';
+      this.formGroup.value.account = '';
+      this.formGroup.value.password = '';
     }
   }
 

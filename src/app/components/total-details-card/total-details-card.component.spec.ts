@@ -23,4 +23,10 @@ describe('TotalDetailsCardComponent', () => {
   it('Renderizar componente', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Renderizar card', () => {
+    const card = fixture.debugElement.nativeElement.querySelector('#detailsCard');
+    expect(card).toBeTruthy();
+  });
+  
 });
